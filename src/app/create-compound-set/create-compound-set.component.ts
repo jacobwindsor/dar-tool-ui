@@ -13,6 +13,7 @@ import * as CSVParse from "csv-parse";
 export class CreateCompoundSetComponent implements OnInit {
 
   isDatasetAvailable: boolean;
+  isParsing: boolean;
 
   @ViewChild('fileInput') fileInput;
 
@@ -42,6 +43,7 @@ export class CreateCompoundSetComponent implements OnInit {
 
   ngOnInit() {
     this.isDatasetAvailable = false;
+    this.isParsing = false;
     this.createForm.valueChanges
       .debounceTime(200)
       .subscribe(data => this.onValueChanged(data));
@@ -84,6 +86,7 @@ export class CreateCompoundSetComponent implements OnInit {
   }
 
   onFileInputChange(event) {
+    this.isParsing = true;
     const fileList = event.target.files;
     if (fileList.length > 1 ) {
       this.notifier.notify('You cannot upload multiple files!', 'error');
@@ -112,6 +115,7 @@ export class CreateCompoundSetComponent implements OnInit {
           }
           this.datasetJSON = JSON.stringify(compounds);
           this.isDatasetAvailable = true;
+          this.isParsing = false;
       });
     };
 

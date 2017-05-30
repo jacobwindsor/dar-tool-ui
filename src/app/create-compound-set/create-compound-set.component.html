@@ -1,4 +1,5 @@
 <div class="row">
+  <md-spinner *ngIf="isParsing" class="loading-spinner" mode="indeterminate"></md-spinner>
   <div class="col">
     <div class="text-center" *ngIf="!isDatasetAvailable">
       <input type="file" accept="text/csv" (change)="onFileInputChange($event)"
