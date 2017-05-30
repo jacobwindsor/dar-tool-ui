@@ -13,8 +13,20 @@ export class CompoundService {
       .then(res => res.json());
   }
 
-  create(email, name, compounds): Promise<any> {
-    return fetch(`${this.URL}/compounds`)
+  create(email, name, dataset): Promise<any> {
+    const payload = JSON.stringify({
+      email,
+      name,
+      dataset
+    });
+
+    return fetch(`${this.URL}/compounds`, {
+      method: "POST",
+      body: payload,
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
       .then(res => res.json());
   }
 

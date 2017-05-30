@@ -13,6 +13,7 @@ import {NotifierService} from "./notifier.service";
 import { CompoundsComponent } from './compounds/compounds.component';
 import {CompoundService} from "./compound.service";
 import { CompoundDetailComponent } from './compound-detail/compound-detail.component';
+import { CreateCompoundSetComponent } from './create-compound-set/create-compound-set.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CompoundDetailComponent } from './compound-detail/compound-detail.compo
     HomeComponent,
     HelpComponent,
     CompoundsComponent,
-    CompoundDetailComponent
+    CompoundDetailComponent,
+    CreateCompoundSetComponent
   ],
   entryComponents: [
   ],

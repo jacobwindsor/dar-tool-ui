@@ -8,8 +8,9 @@ import { orderBy } from 'lodash';
   styleUrls: ['./compound-detail.component.scss']
 })
 export class CompoundDetailComponent implements OnInit {
-  private _compoundSet: any;
+  private _compoundSet: any = [ ];
   @Input() set compoundSet(compoundSet) {
+    if(! compoundSet) return;
     const toSet = Object.assign({}, compoundSet);
     toSet.compounds = toSet.compounds.map(singleCompound => {
       const totalHits = singleCompound.metaCyc.pathwayCount + singleCompound.metaCyc.reactionCount +
