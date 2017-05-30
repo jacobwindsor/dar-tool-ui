@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {CompoundService} from "../compound.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {EmailValidators, UniversalValidators} from "ng2-validators";
+import {NotifierService} from "../notifier.service";
+import * as CSVParse from "csv-parse";
 
 @Component({
   selector: 'app-create-compound-set',
@@ -10,16 +12,18 @@ import {EmailValidators, UniversalValidators} from "ng2-validators";
 })
 export class CreateCompoundSetComponent implements OnInit {
 
+  isDatasetAvailable: boolean;
+
+  @ViewChild('fileInput') fileInput;
+
   createForm = new FormGroup({
     email: new FormControl('', Validators.compose([Validators.required, EmailValidators.normal])),
     name: new FormControl('', Validators.required),
-    dataset: new FormControl('', Validators.required)
   });
 
   formErrors = {
     email: '',
-    name: '',
-    dataset: ''
+    name: ''
   };
 
   validationMessages = {
@@ -30,14 +34,14 @@ export class CreateCompoundSetComponent implements OnInit {
     'name': {
       'required': 'You must enter a name for your dataset',
     },
-    'dataset': {
-      'required': 'You must provide a dataset in JSON format'
-    }
   };
 
-  constructor(private compoundService: CompoundService) { }
+  private datasetJSON: string;
+
+  constructor(private compoundService: CompoundService, private notifier: NotifierService) { }
 
   ngOnInit() {
+    this.isDatasetAvailable = false;
     this.createForm.valueChanges
       .debounceTime(200)
       .subscribe(data => this.onValueChanged(data));
@@ -66,9 +70,51 @@ export class CreateCompoundSetComponent implements OnInit {
   save() {
     if (! this.createForm.valid) { return; };
     const formVal = this.createForm.value;
-    this.compoundService.create(formVal.email, formVal.name, formVal.dataset)
+    if (! this.datasetJSON ) {
+      this.notifier.notify('Can\'t save, there\'s no data!', 'error');
+      return;
+    }
+    this.compoundService.create(formVal.email, formVal.name, this.datasetJSON)
       .then(msg => console.log(msg))
       .catch(err => console.log(err));
   }
 
+  onUploadButtonClick() {
+    this.fileInput.nativeElement.click();
+  }
+
+  onFileInputChange(event) {
+    const fileList = event.target.files;
+    if (fileList.length > 1 ) {
+      this.notifier.notify('You cannot upload multiple files!', 'error');
+      return;
+    }
+    const file = fileList[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      const csv = reader.result;
+      CSVParse(csv,
+        // Set to = 201 so can provide error if over 200
+        { rtrim: true, skip_empty_lines: true, to: 201, columns: ['IUPAC', 'CAS']},
+        (err, compounds) => {
+          if (err) {
+            this.notifier.notify('An error occured while parsing your file. Please check the file is ok', 'error');
+            return;
+          }
+          if (compounds.length < 1) {
+            this.notifier.notify('There must be at least one row of data in the file.', 'error');
+            return;
+          }
+          if (compounds.length > 200) {
+            this.notifier.notify('There cannot be more than 200 rows of data in the file. ' +
+              'Please split up your data into different files', 'error');
+            return;
+          }
+          this.datasetJSON = JSON.stringify(compounds);
+          this.isDatasetAvailable = true;
+      });
+    };
+
+    reader.readAsText(file);
+  }
 }
