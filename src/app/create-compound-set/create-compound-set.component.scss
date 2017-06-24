@@ -1,3 +1,17 @@
 .input {
   width: 100%;
 }
+
+.txt-icon {
+  display: block;
+  margin: 0 auto 1rem auto;
+}
+
+.upload {
+  .header {
+    margin: -24px -24px 24px -24px; // Ignore card padding
+    background-color: #9a67ea;
+    color: white;
+    padding: 24px; // Add inner padding again
+  }
+}

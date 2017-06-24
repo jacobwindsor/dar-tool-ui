@@ -77,8 +77,14 @@ export class CreateCompoundSetComponent implements OnInit {
       return;
     }
     this.compoundService.create(formVal.email, formVal.name, this.datasetJSON)
-      .then(msg => console.log(msg))
-      .catch(err => console.log(err));
+      .then(msg => this.notifier.notify(msg.message, 'success'))
+      .catch(err => this.notifier.notify(err.message, 'error'));
+  }
+
+  cancel() {
+    this.isDatasetAvailable = false;
+    this.isParsing = false;
+    this.datasetJSON = null;
   }
 
   onUploadButtonClick() {
@@ -86,6 +92,7 @@ export class CreateCompoundSetComponent implements OnInit {
   }
 
   onFileInputChange(event) {
+
     this.isParsing = true;
     const fileList = event.target.files;
     if (fileList.length > 1 ) {
@@ -120,5 +127,8 @@ export class CreateCompoundSetComponent implements OnInit {
     };
 
     reader.readAsText(file);
+
+    // allow reselection of same file
+    this.fileInput.nativeElement.value = null;
   }
 }
