@@ -7,6 +7,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import Home from './scenes/Home';
 import Topbar from './components/Topbar';
+import './App.css';
 
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
@@ -17,7 +18,9 @@ const App = () => (
     <MuiThemeProvider>
       <div>
         <Topbar />
-        <Route exact path="/" component={Home} />
+        <div className="scene-wrapper">
+          <Route exact path="/" component={Home} />
+        </div>
       </div>
     </MuiThemeProvider>
   </Router>
