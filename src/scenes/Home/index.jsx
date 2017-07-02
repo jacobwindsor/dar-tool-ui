@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Card, CardHeader, CardActions } from 'material-ui/Card';
-import { GridList, GridTile } from 'material-ui/GridList';
+import { GridList } from 'material-ui/GridList';
+import { Link } from 'react-router-dom';
 import FlatButton from 'material-ui/FlatButton';
 import Compounds from '../../data/compounds';
 
@@ -32,7 +33,9 @@ export default class Home extends Component {
           subtitle={`${singleCompoundSet.compounds.length} compounds`}
         />
         <CardActions>
-          <FlatButton label="View" />
+          <FlatButton>
+            <Link to={`/compounds/${singleCompoundSet._id}`}>View</Link>
+          </FlatButton>
         </CardActions>
       </Card>
     ));

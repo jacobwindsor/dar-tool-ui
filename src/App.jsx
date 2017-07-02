@@ -6,6 +6,7 @@ import {
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import Home from './scenes/Home';
+import CompoundSet from './scenes/CompoundSet';
 import Topbar from './components/Topbar';
 import './App.css';
 
@@ -20,6 +21,7 @@ const App = () => (
         <Topbar />
         <div className="scene-wrapper">
           <Route exact path="/" component={Home} />
+          <Route path="/compounds/:compoundSetId" component={CompoundSet} />
         </div>
       </div>
     </MuiThemeProvider>
