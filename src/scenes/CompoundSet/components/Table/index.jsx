@@ -14,10 +14,11 @@ const TableComp = ({ compounds }) => {
     <TableRow>
       <TableRowColumn>{singleCompound.IUPAC}</TableRowColumn>
       <TableRowColumn>{singleCompound.CAS}</TableRowColumn>
-      <TableRowColumn>{singleCompound.pubChem.IDs.join()}</TableRowColumn>
+      <TableRowColumn>{singleCompound.totalHits}</TableRowColumn>
+      <TableRowColumn>{singleCompound.pubChem.IDs.join(', ')}</TableRowColumn>
       <TableRowColumn>{singleCompound.pubChem.pathwayCount}</TableRowColumn>
       <TableRowColumn>{singleCompound.pubChem.assayCount}</TableRowColumn>
-      <TableRowColumn>{singleCompound.metaCyc.IDs.join()}</TableRowColumn>
+      <TableRowColumn>{singleCompound.metaCyc.IDs.join(', ')}</TableRowColumn>
       <TableRowColumn>{singleCompound.metaCyc.reactionCount}</TableRowColumn>
       <TableRowColumn>{singleCompound.metaCyc.pathwayCount}</TableRowColumn>
     </TableRow>
@@ -31,6 +32,7 @@ const TableComp = ({ compounds }) => {
         <TableRow>
           <TableHeaderColumn>IUPAC</TableHeaderColumn>
           <TableHeaderColumn>CAS</TableHeaderColumn>
+          <TableHeaderColumn>Total Hits</TableHeaderColumn>
           <TableHeaderColumn>PubChem IDs</TableHeaderColumn>
           <TableHeaderColumn>PubChem Pathway</TableHeaderColumn>
           <TableHeaderColumn>PubChem BioAssays</TableHeaderColumn>
