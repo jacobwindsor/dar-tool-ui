@@ -34,7 +34,7 @@ const TableComp = ({ compounds }) => {
           <TableHeaderColumn>CAS</TableHeaderColumn>
           <TableHeaderColumn>Total Hits</TableHeaderColumn>
           <TableHeaderColumn>PubChem IDs</TableHeaderColumn>
-          <TableHeaderColumn>PubChem Pathway</TableHeaderColumn>
+          <TableHeaderColumn>PubChem Pathways</TableHeaderColumn>
           <TableHeaderColumn>PubChem BioAssays</TableHeaderColumn>
           <TableHeaderColumn>MetaCyc IDs</TableHeaderColumn>
           <TableHeaderColumn>MetaCyc Reactions</TableHeaderColumn>
