@@ -33,9 +33,9 @@ export default class Home extends Component {
           subtitle={`${singleCompoundSet.compounds.length} compounds`}
         />
         <CardActions>
-          <FlatButton>
-            <Link to={`/compounds/${singleCompoundSet._id}`}>View</Link>
-          </FlatButton>
+          <Link to={`/compounds/${singleCompoundSet._id}`}>
+            <FlatButton label="View" />
+          </Link>
         </CardActions>
       </Card>
     ));

@@ -7,9 +7,9 @@ const Topbar = () => (
   <Toolbar>
     <ToolbarGroup>
       <ToolbarTitle text="DARLing" />
-      <FlatButton>
-        <Link to="/">Home</Link>
-      </FlatButton>
+      <Link to="/">
+        <FlatButton label="Home" />
+      </Link>
     </ToolbarGroup>
     <ToolbarSeparator />
   </Toolbar>
