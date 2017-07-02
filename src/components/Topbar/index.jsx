@@ -6,7 +6,7 @@ import FlatButton from 'material-ui/FlatButton';
 const Topbar = () => (
   <Toolbar>
     <ToolbarGroup>
-      <ToolbarTitle text="DARling" />
+      <ToolbarTitle text="DARLing" />
       <FlatButton>
         <Link to="/">Home</Link>
       </FlatButton>

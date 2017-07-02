@@ -49,9 +49,12 @@ class CompoundSet extends Component {
     const rankedCompounds = orderBy(compoundSet.compounds, [rankBy], [rankOrder]);
 
     return (
-      <Table
-        compounds={rankedCompounds}
-      />
+      <div>
+        <h1>{compoundSet.name}</h1>
+        <Table
+          compounds={rankedCompounds}
+        />
+      </div>
     );
   }
 }
