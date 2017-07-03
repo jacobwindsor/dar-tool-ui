@@ -2,15 +2,15 @@ import React from 'react';
 import Paper from 'material-ui/Paper';
 import PropTypes from 'prop-types';
 
-const Error = ({ errorMessage }) => (
+const ErrorMessage = ({ errorMessage }) => (
   <Paper>
     <h1>Oops!</h1>
     <h4>{errorMessage}</h4>
   </Paper>
 );
 
-Error.propTypes = {
+ErrorMessage.propTypes = {
   errorMessage: PropTypes.string.isRequired,
 };
 
-export default Error;
+export default ErrorMessage;

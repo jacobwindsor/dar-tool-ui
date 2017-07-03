@@ -7,7 +7,7 @@ import FlatButton from 'material-ui/FlatButton';
 import * as CSVParse from 'csv-parse';
 import Compounds from '../../data/compounds';
 import Snackbar from 'material-ui/Snackbar';
-import Error from '../../components/Error';
+import ErrorMessage from '../../components/ErrorMessage';
 import './index.css';
 
 class CreateCompoundSet extends Component {
@@ -159,7 +159,7 @@ class CreateCompoundSet extends Component {
     const { successMessageShown, error } = this.state;
 
     if (error) return (
-      <Error
+      <ErrorMessage
         errorMessage={error.message}
       />
     );
