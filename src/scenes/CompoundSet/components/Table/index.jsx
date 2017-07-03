@@ -43,7 +43,7 @@ const TableComp = ({ compounds }) => {
       </TableHeader>
       <TableBody
         displayRowCheckbox={false}
-        stripedRows={true}
+        stripedRows
       >
         {compoundRows}
       </TableBody>

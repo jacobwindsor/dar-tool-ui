@@ -1,0 +1,16 @@
+.create-compound-set .form-wrapper {
+    width: 60%;
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+}
+
+.create-compound-set .form-wrapper .header {
+    padding: 1.6rem;
+    background: #009688;
+    color: white;
+}
+
+.create-compound-set .form-wrapper .body {
+    padding: 1.6rem;
+}

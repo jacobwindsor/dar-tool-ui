@@ -10,6 +10,9 @@ const Topbar = () => (
       <Link to="/">
         <FlatButton label="Home" />
       </Link>
+      <Link to="/create">
+        <FlatButton label="Create" />
+      </Link>
     </ToolbarGroup>
     <ToolbarSeparator />
   </Toolbar>
